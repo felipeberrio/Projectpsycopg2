@@ -76,3 +76,29 @@ except Exception as error:
   print(error)
 
 14. Le damos a correr en consola y si todo va bien saldra un: Correct conection
+
+15. Al utilizar la base de datos, vamos a usar conn para conectar pero con el metodo cursor .cur() para permitirme hacer consultas, asi que creamos cursor en una variable: cur = conn.cursor(), luego ejecutamos el servidor, y sumamos desde la DB, luego creamos la respuesta, y luego la imprimimos, 
+
+  >cur = conn.cursor()
+  >
+  >cur.execute("SELECT 1 + 1")
+  >  
+  >result = cur.fetchone()
+  >print(result)
+
+16. Pero tambien tenemos que cerrar esta conexión y el cursor
+
+  cur.close()
+  conn.close()
+
+17. Otra forma de cerrar es poner al final finally: donde si existe un cursor no vacio, cerrarlo. Creamos la variable fuera del try: para que el finally pueda acceder a ella:
+    > cur = None
+    >
+    > finally:
+    >   if cur is not None:
+    >   cur.close()
+    >   if conn is not None:
+    >   conn.close()
+    
+
+18. Vamos a borrar la consulta de ejemplo que hicimos anteriormente 
