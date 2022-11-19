@@ -16,10 +16,15 @@ try:
                           port=port)
   cur = conn.cursor()
 
-  cur.execute("INSERT INTO users(name, email, password) VALUES (%s, %s, %s)", ("Cristian Berrio","cristianberrio95@gmail.com","123456789"))
-  
+  new_user = ("Maria Perez","mariaperez@gmail.com","abc123")
+  insert_query = "INSERT INTO users(name, email, password) VALUES (%s, %s, %s) RETURNING (name, email, password)"
+  cur.execute(insert_query, new_user)
+  user = cur.fetchone()
   conn.commit()
 
+  print(user)
+
+  
 except Exception as error:
   print(error)
 

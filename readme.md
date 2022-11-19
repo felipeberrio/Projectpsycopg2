@@ -150,3 +150,28 @@ except Exception as error:
   conn.commit()
 
 25. y podemos ejecutar el código y buscar en heroku en la dataclip en busqueda que teniamos test de SELECT * FROM users y vamos a obtener los datos anteriormemnte escritos
+
+36. Para que no se vea desordenada la tupla dentro de la consulta, podemos guardarla dentro de una variable, y la consulta de insertar tambien la podemos guardar en una variable porque al final es un string
+
+  new_user = ("Maria Perez","mariaperez@gmail.com","abc123")
+  insert_query = "INSERT INTO users(name, email, password) VALUES (%s, %s, %s)"
+  cur.execute(insert_query, new_user)
+  
+  conn.commit()
+
+37. Para pedirle al programa que nos devuelva datos, usamos la palabra clave RETURNING con los parametros que queremos que devuelva
+
+insert_query = "INSERT INTO users(name, email, password) VALUES (%s, %s, %s) RETURNING name, email, password"
+
+>Para pedir que devuelva todo usamos el *
+>insert_query = "INSERT INTO users(name, email, password) VALUES (%s, %s, %s) RETURNING *
+
+38. Para que nos devuelva esta consulta que queremos hacer usamos el metodo   cur.fetchone() que guardamos en una variable la cual imprimimos
+
+  new_user = ("Maria Perez","mariaperez@gmail.com","abc123")
+  insert_query = "INSERT INTO users(name, email, password) VALUES (%s, %s, %s) RETURNING (name, email, password)"
+  cur.execute(insert_query, new_user)
+  user = cur.fetchone()
+  conn.commit()
+
+  print(user)
