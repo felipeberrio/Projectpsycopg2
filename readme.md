@@ -136,3 +136,17 @@ except Exception as error:
 >Si ejecutamos esto vamos a tener dos tablas en heroku, la nueva con nuevas columnas
 
 22. Igualmente esta consulta que al final es un string podemos guardarla en una variable
+
+### Insetar una fila Insert Row()
+
+23. Vamos a borrar la variable con nuestra consultar para primeramente hacer ejecutar una consultar donde vamos a a hacer una insercion y donde le vamos a ejecutar el lenguaje SQL donde vamos a agregar una fila con valores del tipo string a cada uno de las columnas 
+
+  cur.execute("INSERT INTO users(name, email, password) VALUES (%s, %s, %s)")
+
+24. Despues del string voy a ingresar una tupla que coincida con los valores que espero (crear los datos de la fila)
+
+  cur.execute("INSERT INTO users(name, email, password) VALUES (%s, %s, %s)", ("Cristian   Berrio","cristianberrio95@gmail.com","123456789"))
+  
+  conn.commit()
+
+25. y podemos ejecutar el código y buscar en heroku en la dataclip en busqueda que teniamos test de SELECT * FROM users y vamos a obtener los datos anteriormemnte escritos
