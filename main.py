@@ -16,6 +16,9 @@ try:
                           port=port)
   cur = conn.cursor()
 
+  cur.execute("CREATE TABLE products(id SERIAL PRIMARY KEY)");
+  conn.commit()
+
 except Exception as error:
   print(error)
 

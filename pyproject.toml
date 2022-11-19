@@ -11,6 +11,7 @@ replit = "^3.2.4"
 Flask = "^2.2.0"
 urllib3 = "^1.26.12"
 psycopg2-binary = "^2.9.5"
+psycopg2 = "^2.9.5"
 
 [tool.poetry.dev-dependencies]
 debugpy = "^1.6.2"

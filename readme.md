@@ -101,4 +101,24 @@ except Exception as error:
     >   conn.close()
     
 
-18. Vamos a borrar la consulta de ejemplo que hicimos anteriormente 
+18. Vamos a borrar la consulta de ejemplo que hicimos anteriormente:
+  cur.execute("SELECT 1 + 1")
+  result = cur.fetchone()
+  print(result)
+  print('Correct conection')
+
+
+### Crear tabla con nuestra conexión psycopg2
+
+19. Al crear una DB en postgress no tenemos ninguna tabla creada, podemos crear por código utilizando el cursos que tenemos con el metodo execute para ejecutar una consulta y la consulta sera crear una tabla productos y detallar lo que queremos como un id serial y que sera un primary.
+
+  cur.execute("CREATE TABLE products(id SERIAL PRIMARY KEY)");
+
+20. Para crear la tabla necesitamos tambien usar el metodo commit() para especificar que esa es la consulta que queremos hacer en la DB en la conexión
+
+  conn.commit()
+
+>Al ejecutar ya podemos ver que en heroku se nos crea la nueva tabla en la DB
+>En DATACLIPS podemos hacer consultar de las DB con Create Dataclip -> y ahi vas a poner lo que necesitas consultar ej. SELECT * FROM products y nos seleccionaria todas las filas de la tabla, en este caso nada porque no tiene datos pero significa que la tabla si existe
+
+21. Si quiero una tabla con más columnas podemos refactorizar nuestro código
