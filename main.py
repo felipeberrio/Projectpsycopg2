@@ -16,7 +16,16 @@ try:
                           port=port)
   cur = conn.cursor()
 
-  cur.execute("CREATE TABLE products(id SERIAL PRIMARY KEY)");
+  create_table = """
+              CREATE TABLE IF NOT EXISTS people (
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                password VARCHAR(255) NOT NULL
+              )
+              """
+
+  cur.execute(create_table)
   conn.commit()
 
 except Exception as error:

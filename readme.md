@@ -121,4 +121,18 @@ except Exception as error:
 >Al ejecutar ya podemos ver que en heroku se nos crea la nueva tabla en la DB
 >En DATACLIPS podemos hacer consultar de las DB con Create Dataclip -> y ahi vas a poner lo que necesitas consultar ej. SELECT * FROM products y nos seleccionaria todas las filas de la tabla, en este caso nada porque no tiene datos pero significa que la tabla si existe
 
-21. Si quiero una tabla con más columnas podemos refactorizar nuestro código
+21. Si quiero una tabla con más columnas podemos refactorizar nuestro código, usar las multiples string de python con """
+
+    cur.execute("""
+              CREATE TABLE IF NOT EXISTS users(
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                password VARCHAR(255) NOT NULL
+              )
+              """);
+  conn.commit()
+
+>Si ejecutamos esto vamos a tener dos tablas en heroku, la nueva con nuevas columnas
+
+22. Igualmente esta consulta que al final es un string podemos guardarla en una variable
