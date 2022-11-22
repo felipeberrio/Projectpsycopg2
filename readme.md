@@ -175,3 +175,35 @@ insert_query = "INSERT INTO users(name, email, password) VALUES (%s, %s, %s) RET
   conn.commit()
 
   print(user)
+
+### Insertar Multiples filas
+
+39. Para crear varios usuarios, código que hacemos con new user y insert_query, creando una tupla, ahora vamos a crear una lista de tuplas.
+
+  new_user = [
+    ("Juan David","juanda21@gmail.com","contraseña123"),
+    ("Jose Diaz","josephhg@gmail.com","camisetas"),
+    ("Maria Perez","mariaperez@gmail.com","abc123")
+    ]
+
+40. Para insertarlos con query, tenemos que recorrer esta lista para que vaya introduciendolos con nuestro código ya creado
+
+  for input in multiple_input:
+    cur.execute(insert_query, input)
+  conn.commit()
+
+  Para evitar este bucle con for vamos a usar cur.executeMany
+
+    multiple_input = [
+    ("Jorge Manrrique","jorge1@gmail.com","contraseña123"),
+    ("Lina Lucia","lina@gmail.com","camisetas"),
+    ("Daniela Buenota","daniela@gmail.com","abc123")
+    ]
+  insert_query = "INSERT INTO users(name, email, password) VALUES (%s, %s, %s)"
+  
+  cur.executemany(insert_query, multiple_input)
+  conn.commit()
+
+41. 
+
+  
